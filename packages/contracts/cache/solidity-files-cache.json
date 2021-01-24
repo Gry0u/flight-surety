@@ -107,6 +107,113 @@
       "artifacts": [
         "FlightSuretyData"
       ]
+    },
+    "/home/r1oga/dev/flight-surety/packages/contracts/src/sol/App.sol": {
+      "lastModificationDate": 1611510293067,
+      "contentHash": "c4112a05edcb53de0f0c2b675d404461",
+      "sourceName": "src/sol/App.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.3"
+      ],
+      "artifacts": [
+        "FlightSuretyApp",
+        "FlightSuretyData"
+      ]
+    },
+    "/home/r1oga/dev/flight-surety/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1611518201291,
+      "contentHash": "4d29a22b28b7ec0e89c3cdf1c5e72b83",
+      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "/home/r1oga/dev/flight-surety/packages/contracts/src/sol/Data.sol": {
+      "lastModificationDate": 1611510293067,
+      "contentHash": "438b228d6276224195ef354e49cd3e68",
+      "sourceName": "src/sol/Data.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.3"
+      ],
+      "artifacts": [
+        "FlightSuretyData"
+      ]
     }
   }
 }

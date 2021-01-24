@@ -1,20 +1,7 @@
-const { expect } = require('chai')
-const { ethers } = require('hardhat')
-const { parseEther } = ethers.utils
+const importAll = require('../importAll')
+importAll().from('./constants')
 
-describe('Flight Surety Tests', async accounts => {
-  var config
-  // Operations and Settings
-  // !!!!Warning: .toWei() returns a string
-  const minFund = parseEther('10')
-  const insurancePayment = parseEther('0.1')
-  const ticketPrice = parseEther('0.5')
-  const takeOff = Math.floor(Date.now() / 1000) + 1000
-  const landing = takeOff + 1000
-  const from = 'HAM'
-  const to = 'PAR'
-  const flightRef = 'AF0187'
-
+describe('Flight Surety Tests', () => {
   let dataContract
   let appContract
   let firstAirline
@@ -98,6 +85,7 @@ describe('Flight Surety Tests', async accounts => {
       expect(await dataContract.authorizedCallers(addr1.address)).to.be.true
     })
   })
+
   describe('App contract', () => {
     it('airline must provide funding before registering another one', async () => {
       try {
