@@ -1,0 +1,21 @@
+{
+  "name": "@project/contracts",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "init": "hardhat",
+    "compile": "hardhat compile",
+    "test": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "chai": "^4.2.0",
+    "ethereum-waffle": "^3.2.2",
+    "ethers": "^5.0.26",
+    "hardhat": "^2.0.8"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.3.0"
+  }
+}
