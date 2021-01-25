@@ -4,7 +4,7 @@ const { parseEther } = ethers.utils
 
 exports.expect = expect
 exports.ethers = ethers
-exports.minFund = parseEther('10')
+exports.minFund = parseEther('1')
 exports.insurancePayment = parseEther('0.1')
 exports.ticketPrice = parseEther('0.5')
 

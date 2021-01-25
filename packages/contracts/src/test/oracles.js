@@ -3,7 +3,7 @@ const importAll = require('../importAll')
 importAll().from('./constants')
 
 describe('Oracles', () => {
-  const TEST_ORACLES_COUNT = 15
+  const TEST_ORACLES_COUNT = 20
   const STATUS_CODE_LATE_AIRLINE = 20
 
   let dataContract

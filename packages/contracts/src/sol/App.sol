@@ -57,7 +57,7 @@ contract FlightSuretyApp {
     FlightSuretyData flightSuretyData;
 
     // minimum funding amount
-    uint public minFund = 10 ether;
+    uint public minFund = 1 ether;
 
     // Flight status codees
     uint8 private constant STATUS_CODE_UNKNOWN = 0;
