@@ -5,7 +5,8 @@
   "scripts": {
     "init": "hardhat",
     "compile": "hardhat compile",
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "deploy": "hardhat run src/scripts/deploy.js --network rinkeby"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.1",

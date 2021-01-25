@@ -1,7 +1,6 @@
-// This address points to a dummy ERC20 contract deployed on Ethereum Mainnet,
-// Goerli, Kovan, Rinkeby and Ropsten. Replace it with your smart contracts.
 const addresses = {
-  ceaErc20: "0xc1C0472c0C80bCcDC7F5D01A376Bd97a734B8815",
-};
+  data: '0x7Ef435a98a4eE997Ba1E06670F2767BDee692cf0',
+  app: '0xe42459C34A9D495D4AB9b2F893c65b629e69dEBA'
+}
 
-export default addresses;
+export default addresses

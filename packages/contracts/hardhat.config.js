@@ -16,7 +16,7 @@ module.exports = {
       }
     },
     rinkeby: {
-      url: `https://ropsten.infura.io/v3/${INFURA_PROJECT_ID}`,
+      url: `https://rinkeby.infura.io/v3/${INFURA_PROJECT_ID}`,
       accounts: [`0x${ROPSTEN_PRIVATE_KEY}`]
     }
   },
