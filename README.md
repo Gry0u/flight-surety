@@ -1,109 +1,115 @@
-# FlightSurety
-FlightSurety is an Ethereum DApp to manage flight insurances.
-![Screenshot client](./screenshots/front-end.png)
+This project was bootstrapped with [Create Eth App](https://github.com/paulrberg/create-eth-app).
 
-## User Stories
-### Airlines
-- Airlines can register other airlines.
-- Airline can register flights **respecting following conditions**
-(otherwise the transaction will be rejected):
-  - Take Off date must be in the future.
-  - Landing date must be later than take Off date.
+## Project Structure
 
-- Airlines can withdraw amount credited to them following flight ticket purchases
-by passengers.
-- Airlines form a consortium governed according to the following rules:
-  - Providing a funding of at least 10 ETH is required before registering flights
-  or airlines.
-  - Starting from a number of 4 airlines registered, consensus of 50% is required
-  (votes of half of the registered airlines) for new airline registration
-  - Consensus is not required to register flights
+The default template is a monorepo created with [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/).
 
-### Passengers
-- Passengers can book flights that have been registered by airlines.  
-- Passengers can subscribe insurance for an amount of up to 1 ETH.  
-- Insured passengers get reimbursed 1.5 x their insurance amount if a flight is
-delay due to airline's responsibility.  
-This credited amount is not transferred automatically but has to be withdrawn by
-insurees.
+Workspaces makes it possible to setup multiple packages in such a way that we only need to run `yarn install` once to install all of them in
+a single pass. Dependencies are hoisted at the root.
 
-### Oracles
-Oracles inform the smart contract whether the status of a flight.
-Flight status is requested by submitting a corresponding request to the oracles.  
-As soon as 3 oracles provides concurring opinion, the flight status is updated
-accordingly.  
-**Oracles are simulated**: they generate a random status code on the server side.
+```
+flight-surety
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+└── packages
+    ├── contracts
+    │   ├── README.json
+    │   ├── package.json
+    │   ├── hardhat.config.json
+    │   └── src
+    │       ├── abis
+    │       │   ├── app.json
+    │       │   └── data.json
+    │       │   └── safeMath.json
+    │       ├── scripts
+    │       │   └── deploy.js
+    │       ├── sol
+    │       │   ├── App.sol
+    │       │   └── Data.sol
+    │       ├── tests
+    │       │   ├── oracles.js
+    │       │   └── flightSurety.js
+    │       ├── abis.js
+    │       ├── addresses.js
+    │       ├── constants.js
+    │       ├── importAll.js
+    │       └── index.js
+    ├── react-app
+    │   ├── README.md
+    │   ├── node_modules
+    │   ├── package.json
+    │   ├── public
+    │   │   ├── favicon.ico
+    │   │   ├── index.html
+    │   │   ├── logo192.png
+    │   │   ├── logo512.png
+    │   │   ├── manifest.json
+    │   │   └── robots.txt
+    │   └── src
+    │       ├── App.css
+    │       ├── App.js
+    │       ├── ethereumLogo.svg
+    │       ├── index.css
+    │       └── index.js
+    └── oracles
+        ├── README.md
+        ├── package.json
+        ├── src
+        │   ├── app.js
+        │   ├── index.js
+        │   ├── oracles.js
+        │   ├── middlewares
+        │   │   └── index.ts
+        │   └── routes
+        │       └── index.ts
+        └── 
+```
 
-## Contract architecture
-Data (flights, passengers, insurance amounts, airlines...) has been separated from application logic,
-resulting in two separated contracts: FlightSuretyApp and FlightSuretyData.  
-This offers the following benefits:
-- a new 'App' contract can be deployed in the case of business rule changes (different oracle registration fee, funding fee, etc..) while the state of the data contract is kept.
-- ensures modularity
+Owing to this dependency on Yarn Workspaces, Create Eth App can't be used with npm.
 
-## Getting Started
-1.  Clone/download repository  
-2.  Install dependencies
-```
-$ npm install
-```
-3.  Run tests
-```
-$ truffle develop
-truffle(develop)> test
-```
-**Don't do** `ganache-cli` and then `truffle test`**!  
-The tests would fail because of a different nounce error (I couldn't find out how to fix this).  
-Run from the** `truffle(develop)>` **console and they will pass just fine.**
-![Screenshot tests](./screenshots/test.png)
-4.  Look for your mnemonic in your Metamask settings, write it in a `.secret` file, save it in the root folder.  
-5.  Deploy locally  
-Update the account argument depending on the number of addresses to load at start.
-```
-$ ganache-cli -m "$(cat .secret)" -a 50
-```
-In a new terminal:
-```
-$ truffle migrate
-```
-6.  Start front-end.  
-In a new terminal:
-```
-$ npm run dapp
-```
-7.  Start server (for oracles and API).  
-In a last terminal:
-```
-$ npm run server
-```
-8.  Use the app:
-  - Go to http://localhost:8000/
-  - First airline registered is the account 2 of your metamask accounts.
-  - Provide funding of min 10 ETH from this address.
-  - Register flights or (up to 3) new airlines from this address.
-  - Switch to a 'passenger' address (e.g account 3) and book a flight.
-  - 1st Airline/account 2 is now able to withdraw its credited ticket price.
-  - Submit request to oracles (from which account doesn't matter)
-  - If flight is delayed, passenger/account 3 can now withdraw his credited insurance amount.  
+## Available Scripts
 
-**NOTES:  
-The browser needs to be refreshed in order for the drop-down selection lists (flight booking and oracle requests) to be updated.  
-Refresh is also needed after switching accounts in Metamask.**
+In the project directory, you can run:
 
-## API
-The server runs by default on port 3000.  
-- **/flights**  
-Get all registered flights.  
-Note: the front-end client get the registered flights from this end point.
-- **/flight/ref.destination.landing_timestamp**  
-Get one flight
-- **/response/ref.destination.landing_timestamp**  
-Get a response object (isOpen and requester attributes)
+### React App
 
-## Resources
+#### `yarn react-app:start`
 
-- [Truffle](https://www.truffleframework.com/): smart contracts and DAPP development framework.
-- [npm](https://www.npmjs.com/get-npm)
-- [Metamask](https://metamask.io/): browser add-in to interact with the JavaScript Ethereum API [Web3](https://github.com/ethereum/web3.js/).
-- [VanillaJS DOM class](https://hackernoon.com/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff)
-- [CRUD pattern in solidity](https://medium.com/@robhitchens/solidity-crud-part-1-824ffa69509a)
+Runs the React app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will automatically reload if you make changes to the code.<br>
+You will see the build errors and lint warnings in the console.
+
+#### `yarn react-app:test`
+
+Runs the React test watcher in an interactive mode.<br>
+By default, runs tests related to files changed since the last commit.
+
+[Read more about testing React.](https://facebook.github.io/create-react-app/docs/running-tests)
+
+#### `yarn react-app:build`
+
+Builds the React app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the React documentation on [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+#### `yarn react-app:eject`
+
+**Note: this is a one-way operation. Once you `react-app:eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` the React app at any time. This command will
+remove the single build dependency from your React package.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right
+into the `react-app` package so you have full control over them. All of the commands except `react-app:eject` will still work,
+but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `react-app:eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+

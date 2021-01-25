@@ -18,10 +18,6 @@
     "contracts:test": "yarn workspace @project/contracts test"
   },
   "workspaces": {
-    "nohoist": [
-      "**/@graphprotocol/graph-ts",
-      "**/@graphprotocol/graph-ts/**"
-    ],
     "packages": [
       "packages/*"
     ]

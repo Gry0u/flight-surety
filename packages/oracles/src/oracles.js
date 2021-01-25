@@ -19,7 +19,7 @@ const flightSuretyData = new web3.eth.Contract(
 const NUMBER_OF_ACCOUNTS = 50 // update in truffle.js and start ganacle-cli with the right number of accounts if necessary
 const NUMBER_OF_ORACLES = 30
 
-const Server = {
+const Oracles = {
   oracles: [],
   flights: [],
   states: {
@@ -256,6 +256,4 @@ const Server = {
   }
 }
 
-Server.init(NUMBER_OF_ORACLES)
-
-export default app
+export { Oracles }
